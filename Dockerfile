@@ -81,6 +81,10 @@ COPY ./laravel9 /var/www/html
 RUN chown -R www-data:www-data /var/www/html/storage /var/www/html/bootstrap/cache && \
     chmod -R 755 /var/www/html/storage /var/www/html/bootstrap/cache
 
+COPY ./nginx/default.conf /etc/nginx/sites-available/default
+
+RUN ln -sf /etc/nginx/sites-available/default /etc/nginx/sites-enabled/
+
 # Etapa 6: Executar os comandos Artisan e NPM e compilar os assets
 FROM laravel AS assets
 
